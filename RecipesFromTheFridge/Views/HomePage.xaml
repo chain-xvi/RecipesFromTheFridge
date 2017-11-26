@@ -1,0 +1,143 @@
+﻿<Page
+    x:Class="RecipesFromTheFridge.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:custom="using:RecipesFromTheFridge.Models"
+    mc:Ignorable="d"
+    KeyUp="Page_KeyUp"
+    >
+    <Grid
+        x:Name="ContentArea"
+        Margin="0">
+
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="TitleRow" Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <TextBlock
+            x:Name="TitlePage"
+            Margin="20,0,0,0"
+            x:Uid="Home_Title"
+            Text="Navigation Item 2"
+            Style="{StaticResource PageTitleStyle}"
+            FontWeight="Light"/>
+        </Grid>
+
+        <Grid 
+            Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="{ThemeResource SystemControlPageBackgroundTransparentBrush}"/>
+            <Border Grid.Column="1" Background="{ThemeResource SystemControlPageBackgroundListLowBrush}"/>
+
+            <Grid Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0">
+                    <TextBlock Margin="15,5,0,0" TextWrapping="Wrap" Text="Your ingredients" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20px"/>
+                    <Grid HorizontalAlignment="Stretch" Height="32" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <AutoSuggestBox  TextChanged="NewIngredientAutoSuggestBox_TextChanged" Name="NewIngredientAutoSuggestBox" PlaceholderText="Add an ingredient" Grid.Column="0" MaxWidth="300">
+                            <AutoSuggestBox.ContextFlyout>
+                                <Flyout x:Name="KiddingMeFlyout">
+                                    <TextBlock/>
+                                </Flyout>
+                            </AutoSuggestBox.ContextFlyout>
+                        </AutoSuggestBox>
+                        <Button Name="AddIngredientButton" Click="AddIngredientButton_Click" Grid.Column="1" Width="32" Height="32" BorderThickness="1" Content="+" Padding="0,-7,0,0" FontWeight="Light" FontSize="24px" Style="{StaticResource AccentButtonStyle}" BorderBrush="{StaticResource SystemControlBackgroundAccentRevealBorderBrush}"/>
+                    </Grid>
+                    <Slider Header="Recipes Number" ValueChanged="RecipesNumberSlider_ValueChanged" Margin="20,20,20,0" Name="RecipesNumberSlider" Maximum="30" Minimum="1" Value="30"></Slider>
+                </StackPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" VerticalScrollMode="Auto" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" Grid.Row="1">
+                    <ListView IsItemClickEnabled="False" IsHitTestVisible="True" SelectionMode="None" Margin="20,40,20,20" ItemsSource="{x:Bind ingredientList}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="custom:Ingredient">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Tag="{x:Bind Tag}" Width="220" Grid.Column="0" Style="{StaticResource SubtitleTextBlockStyle}" Text="{x:Bind Name}"/>
+                                    <Button Name="DeleteIngredientButton" Click="DeleteIngredientButton_Click" Tag="{x:Bind Tag}" Style="{StaticResource CompactDelete}" FontFamily="Segoe MDL2 Assets" Content="&#xE74D;" FontSize="16px" Grid.Column="1" Height="32" Width="32"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Margin="15,5,0,0" Text="Recipes" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24px"/>
+                <ScrollViewer VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto" HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled" Grid.Row="1" Margin="20,40,0,0" HorizontalAlignment="Stretch">
+                    <GridView Name="RecipesGridView" SelectionChanged="GridView_SelectionChanged" ItemsSource="{x:Bind recipesList, Mode=TwoWay}" HorizontalAlignment="Center">
+                        <GridView.ItemContainerStyle>
+                            <Style TargetType="GridViewItem">
+                                <Setter Property="Margin" Value="0,20,10,0"/>
+                            </Style>
+                        </GridView.ItemContainerStyle>
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="custom:Recipe">
+                                <Grid Height="200" Width="200" Tag="{x:Bind tag}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Stretch="UniformToFill" Grid.Row="0" Grid.RowSpan="2" Source="{x:Bind image_url}"/>
+                                    <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#66000000">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Margin="7,0,0,0" VerticalAlignment="Center" Style="{ThemeResource BodyTextBlockStyle}" FontSize="16px" Text="{x:Bind title}" Foreground="WhiteSmoke"/>
+                                        <Button Tag="{x:Bind tag}" Name="AddToFavoritesButton" Click="AddToFavoritesButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontFamily="Segoe MDL2 Assets" Content="&#xE00B;" Width="48" Height="48" Grid.Column="1" Style="{StaticResource CompactNotFavorite}">
+                                            <Button.Flyout>
+                                                <Flyout>
+                                                    <TextBlock/>
+                                                </Flyout>
+                                            </Button.Flyout>
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>
