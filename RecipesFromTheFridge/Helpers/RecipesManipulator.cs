@@ -35,8 +35,15 @@ namespace RecipesFromTheFridge.Helpers
         internal async static void GetRecipes(ObservableCollection<Ingredient> allIngredients,
             ObservableCollection<Recipe> allRecipes,
             GridView recipesGridView,
-            int count)
+            int count,
+            ReasonsOfGettingRecipes reasons,
+            int ms = 0)
         {
+            if (reasons == ReasonsOfGettingRecipes.ThroughChangingSliderValue)
+            {
+                await CreatingDelay.CreateDelay(ms);
+            }
+
             try
             {
                 RootObject rootObject = await WebRecipeApiCallService.GetRecipeTitleByCallingFoodAPI(allIngredients);
@@ -60,7 +67,7 @@ namespace RecipesFromTheFridge.Helpers
                     }
                 }
                 TagRecipes(allRecipes);
-                ReFavoriteRecipes(allRecipes, App.FavoriteRecipes);
+                ReFavoriteRecipes(allRecipes, App.FavoriteRecipes, recipesGridView);
 
             }
             catch (Exception)
@@ -103,7 +110,7 @@ namespace RecipesFromTheFridge.Helpers
         /// </summary>
         /// <param name="allRecipes">Holds the allRecipes list</param>
         /// <param name="favoriteRecipes">Holds the favorite recipes</param>
-        private static void ReFavoriteRecipes(ObservableCollection<Recipe> allRecipes, List<Recipe> favoriteRecipes)
+        private static void ReFavoriteRecipes(ObservableCollection<Recipe> allRecipes, List<Recipe> favoriteRecipes, GridView gridView)
         {
             foreach (Recipe recipe in allRecipes)
             {

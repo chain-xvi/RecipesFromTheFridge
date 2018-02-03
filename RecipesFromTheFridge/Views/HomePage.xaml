@@ -36,6 +36,7 @@
             <Border Grid.Column="0" Background="{ThemeResource SystemControlPageBackgroundTransparentBrush}"/>
             <Border Grid.Column="1" Background="{ThemeResource SystemControlPageBackgroundListLowBrush}"/>
 
+
             <Grid Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -49,7 +50,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <AutoSuggestBox  TextChanged="NewIngredientAutoSuggestBox_TextChanged" Name="NewIngredientAutoSuggestBox" PlaceholderText="Add an ingredient" Grid.Column="0" MaxWidth="300">
+                        <AutoSuggestBox TextChanged="NewIngredientAutoSuggestBox_TextChanged" Padding="10,15,10,10" Style="{StaticResource MyIngredientsAutoSuggestBox}" Name="NewIngredientAutoSuggestBox" PlaceholderText="Add an ingredient" Grid.Column="0" MaxWidth="300">
                             <AutoSuggestBox.ContextFlyout>
                                 <Flyout x:Name="KiddingMeFlyout">
                                     <TextBlock/>
@@ -95,8 +96,8 @@
                             <DataTemplate x:DataType="custom:Recipe">
                                 <Grid Height="200" Width="200" Tag="{x:Bind tag}">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Image Stretch="UniformToFill" Grid.Row="0" Grid.RowSpan="2" Source="{x:Bind image_url}"/>
                                     <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#66000000">
@@ -119,6 +120,7 @@
                     </GridView>
                 </ScrollViewer>
             </Grid>
+            <ProgressRing Name="InternetWaitingProgressRing" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="70" Height="70"></ProgressRing>
         </Grid>
 
         <!--  Adaptive triggers  -->
@@ -134,7 +136,7 @@
                         <AdaptiveTrigger MinWindowWidth="0"/>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                        <!--<Setter Target="TitlePage.Margin" Value="48,0,12,7"/>-->
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

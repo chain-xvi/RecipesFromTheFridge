@@ -32,9 +32,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Margin="20,0,0,0" Grid.Row="0" Text="Favorite Recipes" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="24px"/>
-
-            <ScrollViewer Margin="20,20,0,0"  Grid.Row="1" HorizontalScrollMode="Disabled" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer Margin="20,40,0,0"  Grid.Row="1" HorizontalScrollMode="Disabled" VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
                 <GridView SelectionChanged="GridView_SelectionChanged" ItemsSource="{x:Bind favoriteRecipes}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
@@ -45,10 +43,10 @@
                     </GridView.ItemContainerStyle>
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="models:Recipe">
-                            <Grid>
+                            <Grid VerticalAlignment="Bottom">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"/>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Image Stretch="UniformToFill" Grid.Row="0" Grid.RowSpan="2" Source="{x:Bind image_url}"/>
                                 <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#66000000">

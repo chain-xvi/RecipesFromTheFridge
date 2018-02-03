@@ -20,6 +20,8 @@ namespace RecipesFromTheFridge.Services
     {
         internal async static Task<RootObject> GetRecipeTitleByCallingFoodAPI(ObservableCollection<Ingredient> allIngredients)
         {
+            
+
             HttpClient client = new HttpClient();
             if (allIngredients.Count != 0)
             {
@@ -51,5 +53,8 @@ namespace RecipesFromTheFridge.Services
                 return null;
             }
         }
+
+
+
     }
 }

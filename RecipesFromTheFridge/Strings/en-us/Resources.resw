@@ -176,7 +176,9 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>About this application title for Settings</comment>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>Settings page placeholder text.  Your app description goes here.</value>
+    <value>Fridge Recipes gets you wonderful recipes from the ingredients that you have in your fridge. In a very intuitive and clean design, Fridge Recipes lets you save your favorite recipes to get any time as fast as you can to fill in that hungry belly. 😂
+Made by Anas Latique, Inc.
+All rights reserved © 2017 Anas Latique, Inc.</value>
     <comment>About this application description for Settings</comment>
   </data>
   <data name="Settings_PrivacyTermsLink.Content" xml:space="preserve">
@@ -192,7 +194,7 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
     <comment>Personalization text for Settings</comment>
   </data>
   <data name="Shell_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>About</value>
     <comment>Navigation view item name for Settings</comment>
   </data>
   <data name="WebView_FailedMessage.Text" xml:space="preserve">
@@ -242,5 +244,21 @@ Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Ma
   <data name="Shell_WebView" xml:space="preserve">
     <value>WebView</value>
     <comment>Navigation view item name for WebView</comment>
+  </data>
+  <data name="Blank_Title.Text" xml:space="preserve">
+    <value>Blank</value>
+    <comment>Page title for Blank</comment>
+  </data>
+  <data name="Shell_Blank" xml:space="preserve">
+    <value>Blank</value>
+    <comment>Navigation view item name for Blank</comment>
+  </data>
+  <data name="NutritionInfos_Title.Text" xml:space="preserve">
+    <value>NutritionInfos</value>
+    <comment>Page title for NutritionInfos</comment>
+  </data>
+  <data name="Shell_NutritionInfos" xml:space="preserve">
+    <value>NutritionInfos</value>
+    <comment>Navigation view item name for NutritionInfos</comment>
   </data>
 </root>

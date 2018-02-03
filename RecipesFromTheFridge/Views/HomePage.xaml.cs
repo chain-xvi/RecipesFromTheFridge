@@ -80,7 +80,8 @@ namespace RecipesFromTheFridge.Views
 
             if (ingredientList.Count > 0)
             {
-                RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value));
+                InternetWaitingProgressRing.IsActive = true;
+                RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value), ReasonsOfGettingRecipes.ThroughTextBoxText);
                 if (!InternetConnectionAvailabilityCheckService.IsInternetAvailable())
                 {
                     App.IngredientList = new ObservableCollection<Ingredient>();
@@ -98,6 +99,12 @@ namespace RecipesFromTheFridge.Views
             {
                 //File does not exist, still not saved!
             }
+
+            InternetWaitingProgressRing.IsActive = false;
+
+            ApplicationViewTitleBar titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.ForegroundColor = Colors.Black;
+            titleBar.ButtonForegroundColor = Colors.Black;
         }
 
 
@@ -147,8 +154,9 @@ namespace RecipesFromTheFridge.Views
                 {
                     if (InternetConnectionAvailabilityCheckService.IsInternetAvailable())
                     {
+                        InternetWaitingProgressRing.IsActive = true;
                         IngredientManipulator.AddIngredientToTheListView(ingredientList, ingredient);
-                        RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value));
+                        RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value), ReasonsOfGettingRecipes.ThroughTextBoxText);
                         App.RecipeSliderValue = Convert.ToInt16(RecipesNumberSlider.Value);
                     }
                     else
@@ -168,6 +176,8 @@ namespace RecipesFromTheFridge.Views
                 ShowKiddingMeFlyout("No ingredient entered");
             }
             NewIngredientAutoSuggestBox.Text = String.Empty;
+
+            InternetWaitingProgressRing.IsActive = false;
         }
 
 
@@ -193,7 +203,7 @@ namespace RecipesFromTheFridge.Views
         private void DeleteIngredientButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             IngredientManipulator.DeleteIngredient(ingredientList, Convert.ToInt16((sender as Button).Tag));
-            RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value));
+            RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt16(RecipesNumberSlider.Value), ReasonsOfGettingRecipes.ThroughTextBoxText);
         }
 
 
@@ -254,7 +264,7 @@ namespace RecipesFromTheFridge.Views
         private async void AddToFavoritesButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Recipe wantedToBeFavoredOrUnfavoredRecipe = recipesList.FirstOrDefault(r => r.tag == Convert.ToInt16((sender as Button).Tag));
-            
+
             Recipe rec = App.FavoriteRecipes.FirstOrDefault(recipe => recipe.image_url == wantedToBeFavoredOrUnfavoredRecipe.image_url);
             if (!wantedToBeFavoredOrUnfavoredRecipe.IsFavored && rec == null)
             {
@@ -272,7 +282,7 @@ namespace RecipesFromTheFridge.Views
                 (sender as Button).Flyout.ShowAt((sender as Button));
                 (sender as Button).Style = Application.Current.Resources["CompactNotFavorite"] as Style;
             }
-        
+
             string FavoriteRecipesAsJson = Serializer.Serialize(App.FavoriteRecipes);
             await Serializer.SaveFavoriteRecipesAsync(FavoriteRecipesAsJson);
 
@@ -311,22 +321,16 @@ namespace RecipesFromTheFridge.Views
         /// </para>
         /// <param name="sender">Holds the object that fire the event</param>
         /// <param name="e">Holds event data of the event</param>
-        private async void RecipesNumberSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
+        private void RecipesNumberSlider_ValueChanged(object sender, Windows.UI.Xaml.Controls.Primitives.RangeBaseValueChangedEventArgs e)
         {
-            await CreateADelay(2000);
             if (recipesList != null && recipesList.Any())
             {
-                RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt32(RecipesNumberSlider.Value));
+                RecipesManipulator.GetRecipes(ingredientList, recipesList, RecipesGridView, Convert.ToInt32(RecipesNumberSlider.Value), ReasonsOfGettingRecipes.ThroughChangingSliderValue, 2000);
             }
         }
 
 
-        /// <summary>
-        /// Creates a delay 
-        /// </summary>
-        /// <param name="ms">Holds the number of milliseconds to send to a <see cref="Task.Delay(int)"/></param>
-        /// <returns>returns a <see cref="Task"/> which represents an action being completed</returns>
-        private async Task CreateADelay(int ms) => await Task.Delay(ms);
+
 
         //TODO. look for the added recipes in the add button click event handler, if there are any recipes
         //      that are previously been favored by their url, and make their foreground pink!

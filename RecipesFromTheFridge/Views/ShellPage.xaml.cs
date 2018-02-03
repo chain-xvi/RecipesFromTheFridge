@@ -98,7 +98,8 @@ namespace RecipesFromTheFridge.Views
             // Edit String/en-US/Resources.resw: Add a menu item title for each page
             _primaryItems.Add(ShellNavigationItem.FromType<HomePage>("Shell_Home".GetLocalized(), Symbol.Home));
             _primaryItems.Add(ShellNavigationItem.FromType<FavoritesPage>("Shell_Favorites".GetLocalized(), Symbol.OutlineStar));
-            _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Setting));
+            _secondaryItems.Add(ShellNavigationItem.FromType<SettingsPage>("Shell_Settings".GetLocalized(), Symbol.Document));
+            _primaryItems.Add(ShellNavigationItem.FromType<NutritionInfosPage>("Shell_NutritionInfos".GetLocalized(), Symbol.Document));
         }
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
