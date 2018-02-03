@@ -126,7 +126,7 @@
                                             <TextBlock Tag="Potassium" Name="PotassiumValue"></TextBlock>
                                             <TextBlock Tag="Potassium" Name="PotassiumUnit"></TextBlock>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
+                                        <StackPanel Orientation="Horizontal"> 
                                             <TextBlock>Iron</TextBlock>
                                             <TextBlock Tag="Iron" Name="IronValue"></TextBlock>
                                             <TextBlock Tag="Iron" Name="IronUnit"></TextBlock>
