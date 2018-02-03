@@ -132,7 +132,7 @@
                                             <TextBlock Tag="Iron" Name="IronUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Phosphorus</TextBlock>
+                                            <TextBlock>Phosphorus</TextBlock> 
                                             <TextBlock Tag="Phosphorus" Name="PhosphorusValue"></TextBlock>
                                             <TextBlock Tag="Phosphorus" Name="PhosphorusUnit"></TextBlock>
                                         </StackPanel>
