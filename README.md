@@ -9,6 +9,17 @@
 <br>
 <h2> How to contribute.</h2>
 You will need to use Visual Studio 2017 (updated to the latest version prefered) and the Windows 10 Build 16299 SDK. Simply clone the repo to get started.
+<p>Create a new branch at first and then make the changes you want, next, open a pull request so that we can discuss those changes and accept them, at last we will merge that branch with the _master branch 🙏</p>
+<p>I highly recommend reading through these sets of articles: <a href="https://guides.github.com">GitHub guides</a></p>
+<br>
+<br>
+<br>
+<h2>Contact</h2>
+<p>You can contact me at multiple places:</p>
+<p><a href="https://github.com/iamanas20/">GitHub</a></p>
+<p><a href="https://twitter.com/iamanas20/">Twitter</a></p>
+<p><a href="https://www.facebook.com/profile.php?id=100006315791645">Facebook</a></p>
+<p><a href="mailto:anaslatique@gmail.com?Subject=About%20GitHub" target="_top">Email</a></p>
 <br>
 <br>
 <br>
