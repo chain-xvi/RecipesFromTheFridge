@@ -13,9 +13,16 @@ namespace RecipesFromTheFridge.Views
 {
     public sealed partial class NutritionInfosPage : Page, INotifyPropertyChanged
     {
+
+        /// <summary>
+        /// Holds all the possible Measurement units that will get back in the json call...
+        /// </summary>
         public List<string> Measures = new List<string> { "Pound", "Kilogram", "Ounce", "Gram", "Cup", "Liter", "Jumbo", "Whole", "Salt spoon", "Quart", "Teaspoon", "Smidgen", "Drop", "Gallon", "Dash", "Handful", "Scoop", "Bowl", "Cubic inch", "Pinch", "Milliliter", "Tablespoon", "Fluid ounce", "Bottle", "Tad", "Pint", "Dessert spoon" };
+        
         double quantity = 0;
+        
         public string FoodLabel { get; set; }
+        
         private List<TextBlock> TextBlocks;
 
         public NutritionInfosPage()

@@ -12,12 +12,22 @@ namespace RecipesFromTheFridge.Helpers
 {
     class IngredientManipulator
     {
-        public static void AddIngredientToTheListView(ObservableCollection<Ingredient> allingredients, Ingredient ingredient)
+
+        /// <summary>
+        /// Adds ingredient to the allIngredient collection based on the sent indredient.
+        /// <para>
+        /// Check if the sent ingredient is already in the collection.
+        /// If true, add it, otherwise return.
+        /// </para>
+        /// </summary>
+        /// <param name="allIngredients">the ingredients collection.</param>
+        /// <param name="ingredient">the ingredient to add.</param>
+        public static void AddIngredientToTheListView(ObservableCollection<Ingredient> allIngredients, Ingredient ingredient)
         {   
-            if (allingredients.FirstOrDefault(i => i.Name == ingredient.Name) == null)
+            if (allIngredients.FirstOrDefault(i => i.Name == ingredient.Name) == null)
             {
-                allingredients.Add(new Ingredient { Name = ingredient.Name });
-                TagIngredients(allingredients);
+                allIngredients.Add(new Ingredient { Name = ingredient.Name });
+                TagIngredients(allIngredients);
             }
             else
             {
@@ -25,6 +35,12 @@ namespace RecipesFromTheFridge.Helpers
             }
         }
 
+
+        /// <summary>
+        /// Tags the items properly in the collection, mainly to get them when we want them out of the collection
+        /// in this case to delete the ingredients
+        /// </summary>
+        /// <param name="allingredients">holds the ingredients collection</param>
         private static void TagIngredients(ObservableCollection<Ingredient> allingredients)
         {
             int i = 1;
@@ -35,6 +51,12 @@ namespace RecipesFromTheFridge.Helpers
             }
         }
 
+
+        /// <summary>
+        /// Deletes the ingredient based on its tag.
+        /// </summary>
+        /// <param name="allIngredients">Holds the ingredients collection</param>
+        /// <param name="tag">Holds the tag</param>
         public static void DeleteIngredient(ObservableCollection<Ingredient> allIngredients, int tag)
         {
             allIngredients.Remove(allIngredients.FirstOrDefault(i => i.Tag == tag));

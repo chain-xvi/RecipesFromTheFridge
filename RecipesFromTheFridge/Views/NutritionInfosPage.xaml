@@ -126,13 +126,13 @@
                                             <TextBlock Tag="Potassium" Name="PotassiumValue"></TextBlock>
                                             <TextBlock Tag="Potassium" Name="PotassiumUnit"></TextBlock>
                                         </StackPanel>
-                                        <StackPanel Orientation="Horizontal"> 
+                                        <StackPanel Orientation="Horizontal">
                                             <TextBlock>Iron</TextBlock>
                                             <TextBlock Tag="Iron" Name="IronValue"></TextBlock>
                                             <TextBlock Tag="Iron" Name="IronUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Phosphorus</TextBlock> 
+                                            <TextBlock>Phosphorus</TextBlock>
                                             <TextBlock Tag="Phosphorus" Name="PhosphorusValue"></TextBlock>
                                             <TextBlock Tag="Phosphorus" Name="PhosphorusUnit"></TextBlock>
                                         </StackPanel>
@@ -147,38 +147,40 @@
                             </Grid>
 
 
+                            <!--Weird bug, when it is narrow state the FoodTextBox goes beyond the Button-->
+
 
                             <!--Make a second grid to display remaining data-->
 
 
-                            
-                            <!--<Grid Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                            <Grid Width="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <StackPanel>
+                                <!--<StackPanel>
                                     <TextBlock>Calories</TextBlock>
                                     <StackPanel Grid.Row="0">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Fat</TextBlock>
-                                            <TextBlock Tag="Fat" Name="FatValue"></TextBlock>
-                                            <TextBlock Tag="Fat" Name="FatUnit"></TextBlock>
+                                            <TextBlock Tag="VitaminA" Name="VitAValue"></TextBlock>
+                                            <TextBlock Tag="VitaminA" Name="VitAUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Sat Fat</TextBlock>
-                                            <TextBlock Tag="Saturated" Name="SatFatValue"></TextBlock>
-                                            <TextBlock Tag="Saturated" Name="SatFatUnit"></TextBlock>
+                                            <TextBlock Tag="VitaminB" Name="VitBValue"></TextBlock>
+                                            <TextBlock Tag="VitaminB" Name="VitBFatUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Trans Fat</TextBlock>
-                                            <TextBlock  Tag="Trans" Name="TansFatValue"></TextBlock>
-                                            <TextBlock Tag="Trans" Name="TansFatUnit"></TextBlock>
+                                            <TextBlock  Tag="VitaminD" Name="VitDValue"></TextBlock>
+                                            <TextBlock Tag="VitaminD" Name="VitDUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Carbohydrate</TextBlock>
-                                            <TextBlock Tag="Carbs" Name="CarbsValue"></TextBlock>
-                                            <TextBlock Tag="Carbs" Name="CarbsUnit"></TextBlock>
+                                            <TextBlock Tag="VitaminD" Name="VitEValue"></TextBlock>
+                                            <TextBlock Tag="VitaminD" Name="VitEUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Sugar</TextBlock>
@@ -226,20 +228,39 @@
                                             <TextBlock Tag="Phosphorus" Name="PhosphorusUnit"></TextBlock>
                                         </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                                <StackPanel Grid.Column="1">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Name="CaloriesUnit"></TextBlock>
                                     </StackPanel>
-                                    <TextBlock Tag="Energy" Name="CaloriesValue"></TextBlock>
-                                </StackPanel>
-                            </Grid>-->
+                                    <StackPanel Grid.Column="1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Name="CaloriesUnit"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Tag="Energy" Name="CaloriesValue"></TextBlock>
+                                    </StackPanel>-->
+                            </Grid>
 
-                            
+
                         </GridView>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
+
+        <!--  Adaptive triggers  -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="TitlePage.Margin" Value="48,0,12,7"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
