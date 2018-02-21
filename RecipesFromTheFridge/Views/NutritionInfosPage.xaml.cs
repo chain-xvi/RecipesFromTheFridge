@@ -18,17 +18,17 @@ namespace RecipesFromTheFridge.Views
         /// Holds all the possible Measurement units that will get back in the json call...
         /// </summary>
         public List<string> Measures = new List<string> { "Pound", "Kilogram", "Ounce", "Gram", "Cup", "Liter", "Jumbo", "Whole", "Salt spoon", "Quart", "Teaspoon", "Smidgen", "Drop", "Gallon", "Dash", "Handful", "Scoop", "Bowl", "Cubic inch", "Pinch", "Milliliter", "Tablespoon", "Fluid ounce", "Bottle", "Tad", "Pint", "Dessert spoon" };
-        
+
         double quantity = 0;
-        
+
         public string FoodLabel { get; set; }
-        
+
         private List<TextBlock> TextBlocks;
 
         public NutritionInfosPage()
         {
             InitializeComponent();
-            TextBlocks = new List<TextBlock>() { CaloriesValue, CaloriesUnit, FatValue, FatUnit, SatFatValue, SatFatUnit, TansFatValue, TansFatUnit, CarbsValue, CarbsUnit, SugarsValue, SugarsUnit, ProteinValue, ProteinUnit, CholeValue, CholeUnit, SodiumValue, SodiumUnit, CalciumValue, CalciumUnit, MagnesiumValue, MagnesiumUnit, PotassiumValue, PotassiumUnit, IronValue, IronUnit, PhosphorusValue, PhosphorusUnit };
+            TextBlocks = new List<TextBlock>() { CaloriesValue, CaloriesUnit, FatValue, FatUnit, SatFatValue, SatFatUnit, TansFatValue, TansFatUnit, CarbsValue, CarbsUnit, SugarsValue, SugarsUnit, ProteinValue, ProteinUnit, CholeValue, CholeUnit, SodiumValue, SodiumUnit, CalciumValue, CalciumUnit, MagnesiumValue, MagnesiumUnit, PotassiumValue, PotassiumUnit, IronValue, IronUnit, PhosphorusValue, PhosphorusUnit, VitAValue, VitAUnit, VitBValue, VitBFatUnit, VitDValue, VitDUnit, VitEValue, VitEUnit, VitKValue, VitKUnit, NiacinValue, NiacinUnit, VitB12Value, VitB12Unit, ThiaminValue, ThiaminUnit, RiboflavinValue, RiboflavinUnit, FolateValue, FolateUnit };
             //measureUnitComboBox.SelectedIndex = 0;
         }
 
@@ -47,7 +47,13 @@ namespace RecipesFromTheFridge.Views
 
         private void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        private async void getFoodButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GetFoodButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             if (!String.IsNullOrEmpty(foodTextBox.Text))
             {
@@ -117,7 +123,18 @@ namespace RecipesFromTheFridge.Views
                 textBoxesList[i].Text = nutritionValue[i];
             }
         }
+        
 
+        /// <summary>
+        /// Check the nutrition values if null, else, then add them to a list.
+        /// <para>
+        /// Some food types don't have certain values, so they get null, and generate exceptions,
+        /// </para>
+        /// </summary>
+        /// <param name="totalNutrients">the TotalNutrients object that holds all the incoming
+        /// values of the nutrition informations
+        /// </param>
+        /// <returns>A list full of valid values.</returns>
         private async Task<List<string>> CheckNullsAndReturnValidValues(TotalNutrients totalNutrients)
         {
             return await Task.Run(() =>
@@ -248,6 +265,97 @@ namespace RecipesFromTheFridge.Views
                 {
                     listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
                 }
+
+                if (totalNutrients.VITA_RAE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.VITA_RAE.quantity, 2).ToString(), totalNutrients.VITA_RAE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.VITB6A != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.VITB6A.quantity, 2).ToString(), totalNutrients.VITB6A.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.VITD != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.VITD.quantity, 2).ToString(), totalNutrients.VITD.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.TOCPHA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.TOCPHA.quantity, 2).ToString(), totalNutrients.TOCPHA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.VITK1 != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.VITK1.quantity, 2).ToString(), totalNutrients.VITK1.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.NIA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.NIA.quantity, 2).ToString(), totalNutrients.NIA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.VITB12 != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.VITB12.quantity, 2).ToString(), totalNutrients.VITB12.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.THIA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.THIA.quantity, 2).ToString(), totalNutrients.THIA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.RIBF != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.RIBF.quantity, 2).ToString(), totalNutrients.RIBF.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalNutrients.FOLDFE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.FOLDFE.quantity, 2).ToString(), totalNutrients.FOLDFE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
 
                 return listOfValues;
             });

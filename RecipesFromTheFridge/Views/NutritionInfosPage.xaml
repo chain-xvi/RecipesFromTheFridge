@@ -33,7 +33,7 @@
                                 <ColumnDefinition Width="Auto "></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBox Name="foodTextBox" Padding="10,11,10,10"  PlaceholderText="Egg..." Grid.Column="0"></TextBox>
-                            <Button Name="getFoodButton" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Click="getFoodButton_Click" Width="50" Height="50" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xE73E;"></Button>
+                            <Button Name="getFoodButton" Background="{ThemeResource SystemControlBackgroundAccentBrush}" Click="GetFoodButton_Click" Width="50" Height="50" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xE73E;"></Button>
                         </Grid>
 
                         <StackPanel Orientation="Horizontal" Width="Auto" Margin="0 20 0 0">
@@ -159,82 +159,61 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <!--<StackPanel>
+                                <StackPanel>
                                     <TextBlock>Calories</TextBlock>
                                     <StackPanel Grid.Row="0">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Fat</TextBlock>
+                                            <TextBlock>Vitamin A</TextBlock>
                                             <TextBlock Tag="VitaminA" Name="VitAValue"></TextBlock>
                                             <TextBlock Tag="VitaminA" Name="VitAUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Sat Fat</TextBlock>
+                                            <TextBlock>Vitamin B</TextBlock>
                                             <TextBlock Tag="VitaminB" Name="VitBValue"></TextBlock>
                                             <TextBlock Tag="VitaminB" Name="VitBFatUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Trans Fat</TextBlock>
+                                            <TextBlock>Vitamin D</TextBlock>
                                             <TextBlock  Tag="VitaminD" Name="VitDValue"></TextBlock>
                                             <TextBlock Tag="VitaminD" Name="VitDUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Carbohydrate</TextBlock>
-                                            <TextBlock Tag="VitaminD" Name="VitEValue"></TextBlock>
-                                            <TextBlock Tag="VitaminD" Name="VitEUnit"></TextBlock>
+                                            <TextBlock>Vitamin E</TextBlock>
+                                            <TextBlock Tag="VitaminE" Name="VitEValue"></TextBlock>
+                                            <TextBlock Tag="VitaminE" Name="VitEUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Sugar</TextBlock>
-                                            <TextBlock Tag="Sugars" Name="SugarsValue"></TextBlock>
-                                            <TextBlock Tag="Sugars" Name="SugarsUnit"></TextBlock>
+                                            <TextBlock>Vitamin K</TextBlock>
+                                            <TextBlock Tag="VitaminK" Name="VitKValue"></TextBlock>
+                                            <TextBlock Tag="VitaminK" Name="VitKUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Protein</TextBlock>
-                                            <TextBlock Tag="Protein" Name="ProteinValue"></TextBlock>
-                                            <TextBlock Tag="Protein" Name="ProteinUnit"></TextBlock>
+                                            <TextBlock>Niacin</TextBlock>
+                                            <TextBlock Tag="Niacin" Name="NiacinValue"></TextBlock>
+                                            <TextBlock Tag="Niacin" Name="NiacinUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Cholesterol</TextBlock>
-                                            <TextBlock Tag="Cholesterol" Name="CholeValue"></TextBlock>
-                                            <TextBlock Tag="Cholesterol" Name="CholeUnit"></TextBlock>
+                                            <TextBlock>Vitamin B12</TextBlock>
+                                            <TextBlock Tag="VitaminB12" Name="VitB12Value"></TextBlock>
+                                            <TextBlock Tag="VitaminB12" Name="VitB12Unit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Sodium</TextBlock>
-                                            <TextBlock Tag="Sodium" Name="SodiumValue"></TextBlock>
-                                            <TextBlock Tag="Sodium" Name="SodiumUnit"></TextBlock>
+                                            <TextBlock>Thiamin</TextBlock>
+                                            <TextBlock Tag="Thiamin" Name="ThiaminValue"></TextBlock>
+                                            <TextBlock Tag="Thiamin" Name="ThiaminUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Calcium</TextBlock>
-                                            <TextBlock Tag="Calcium" Name="CalciumValue"></TextBlock>
-                                            <TextBlock Tag="Calcium" Name="CalciumUnit"></TextBlock>
+                                            <TextBlock>Riboflavin</TextBlock>
+                                            <TextBlock Tag="Riboflavin" Name="RiboflavinValue"></TextBlock>
+                                            <TextBlock Tag="Riboflavin" Name="RiboflavinUnit"></TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Magnesium</TextBlock>
-                                            <TextBlock Tag="Magnesium" Name="MagnesiumValue"></TextBlock>
-                                            <TextBlock Tag="Magnesium" Name="MagnesiumUnit"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Potassium</TextBlock>
-                                            <TextBlock Tag="Potassium" Name="PotassiumValue"></TextBlock>
-                                            <TextBlock Tag="Potassium" Name="PotassiumUnit"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Iron</TextBlock>
-                                            <TextBlock Tag="Iron" Name="IronValue"></TextBlock>
-                                            <TextBlock Tag="Iron" Name="IronUnit"></TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock>Phosphorus</TextBlock>
-                                            <TextBlock Tag="Phosphorus" Name="PhosphorusValue"></TextBlock>
-                                            <TextBlock Tag="Phosphorus" Name="PhosphorusUnit"></TextBlock>
+                                            <TextBlock>Folate</TextBlock>
+                                            <TextBlock Tag="Folate" Name="FolateValue"></TextBlock>
+                                            <TextBlock Tag="Folate" Name="FolateUnit"></TextBlock>
                                         </StackPanel>
                                     </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Grid.Column="1">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Name="CaloriesUnit"></TextBlock>
-                                        </StackPanel>
-                                        <TextBlock Tag="Energy" Name="CaloriesValue"></TextBlock>
-                                    </StackPanel>-->
+                                </StackPanel>
                             </Grid>
 
 
