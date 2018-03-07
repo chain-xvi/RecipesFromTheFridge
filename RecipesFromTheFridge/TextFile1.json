@@ -11,7 +11,7 @@
       "label": "Energy", 
       "quantity": 1430.0,
       "unit": "kcal"
-    },
+    }, 
     "FAT": { 
       "label": "Fat",
       "quantity": 95.1,
