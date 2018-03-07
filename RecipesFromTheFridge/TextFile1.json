@@ -3,7 +3,7 @@
   "yield": 1.0,
   "calories": 1430,
   "totalWeight": 1000.0,
-  "dietLabels": [ "LOW_CARB" ],
+  "dietLabels": [ "LOW_CARB" ], 
   "healthLabels": [ "SUGAR_CONSCIOUS", "VEGETARIAN", "PESCATARIAN", "PALEO", "SPECIFIC_CARBS", "DAIRY_FREE", "GLUTEN_FREE", "WHEAT_FREE", "MILK_FREE", "PEANUT_FREE", "TREE_NUT_FREE", "SOY_FREE", "FISH_FREE", "SHELLFISH_FREE", "PORK_FREE", "RED_MEAT_FREE", "CRUSTACEAN_FREE", "CELERY_FREE", "MUSTARD_FREE", "SESAME_FREE", "LUPINE_FREE", "MOLLUSK_FREE", "ALCOHOL_FREE", "NO_OIL_ADDED", "NO_SUGAR_ADDED", "KOSHER" ],
   "cautions": [],
   "totalNutrients": {
