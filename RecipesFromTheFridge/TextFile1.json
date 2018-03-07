@@ -8,11 +8,11 @@
   "cautions": [],
   "totalNutrients": {
     "ENERC_KCAL": {
-      "label": "Energy",
+      "label": "Energy", 
       "quantity": 1430.0,
       "unit": "kcal"
     },
-    "FAT": {
+    "FAT": { 
       "label": "Fat",
       "quantity": 95.1,
       "unit": "g"
