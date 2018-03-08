@@ -12,7 +12,6 @@ namespace RecipesFromTheFridge.Helpers
 {
     class IngredientManipulator
     {
-
         /// <summary>
         /// Adds ingredient to the allIngredient collection based on the sent indredient.
         /// <para>

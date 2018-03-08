@@ -9,6 +9,11 @@ namespace RecipesFromTheFridge.Helpers
 {
     class NoInternetConnectionDialog
     {
+
+        /// <summary>
+        /// Shows a dialog saying there is no internet connection...
+        /// </summary>
+        /// <returns>returns an asynchronous Task</returns>
         internal static async Task ShowNoInternetConnectionDialog()
         {
             ContentDialog dialog = new ContentDialog

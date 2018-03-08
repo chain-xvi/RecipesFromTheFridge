@@ -20,8 +20,6 @@ namespace RecipesFromTheFridge.Services
     {
         internal async static Task<RootObject> GetRecipeTitleByCallingFoodAPI(ObservableCollection<Ingredient> allIngredients)
         {
-            
-
             HttpClient client = new HttpClient();
             if (allIngredients.Count != 0)
             {
@@ -45,7 +43,6 @@ namespace RecipesFromTheFridge.Services
                 HttpResponseMessage response = await client.GetAsync("http://food2fork.com/api/search?key=1361ee921fc663845ecb612e49d63797&q=" + listOfIngredients);
                 string JsonAsString = await response.Content.ReadAsStringAsync();
                 RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(JsonAsString);
-                //GetRecipeMainUrl(rootObject);
                 return rootObject;
             }
             else
@@ -53,8 +50,5 @@ namespace RecipesFromTheFridge.Services
                 return null;
             }
         }
-
-
-
     }
 }

@@ -140,9 +140,9 @@
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
                                     <StackPanel Orientation="Horizontal">
+                                        <TextBlock Tag="Energy" Name="CaloriesValue"></TextBlock>
                                         <TextBlock Name="CaloriesUnit"></TextBlock>
                                     </StackPanel>
-                                    <TextBlock Tag="Energy" Name="CaloriesValue"></TextBlock>
                                 </StackPanel>
                             </Grid>
 
@@ -160,7 +160,6 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel>
-                                    <TextBlock>Calories</TextBlock>
                                     <StackPanel Grid.Row="0">
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock>Vitamin A</TextBlock>
@@ -215,8 +214,6 @@
                                     </StackPanel>
                                 </StackPanel>
                             </Grid>
-
-
                         </GridView>
                     </StackPanel>
                 </StackPanel>
