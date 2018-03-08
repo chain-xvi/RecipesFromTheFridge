@@ -28,7 +28,7 @@ namespace RecipesFromTheFridge.Views
         public NutritionInfosPage()
         {
             InitializeComponent();
-            TextBlocks = new List<TextBlock>() { CaloriesValue, CaloriesUnit, FatValue, FatUnit, SatFatValue, SatFatUnit, TansFatValue, TansFatUnit, CarbsValue, CarbsUnit, SugarsValue, SugarsUnit, ProteinValue, ProteinUnit, CholeValue, CholeUnit, SodiumValue, SodiumUnit, CalciumValue, CalciumUnit, MagnesiumValue, MagnesiumUnit, PotassiumValue, PotassiumUnit, IronValue, IronUnit, PhosphorusValue, PhosphorusUnit, VitAValue, VitAUnit, VitBValue, VitBFatUnit, VitDValue, VitDUnit, VitEValue, VitEUnit, VitKValue, VitKUnit, NiacinValue, NiacinUnit, VitB12Value, VitB12Unit, ThiaminValue, ThiaminUnit, RiboflavinValue, RiboflavinUnit, FolateValue, FolateUnit };
+            TextBlocks = new List<TextBlock>() { CaloriesValue, CaloriesUnit, FatValue, FatUnit, SatFatValue, SatFatUnit, TansFatValue, TansFatUnit, CarbsValue, CarbsUnit, SugarsValue, SugarsUnit, ProteinValue, ProteinUnit, CholeValue, CholeUnit, SodiumValue, SodiumUnit, CalciumValue, CalciumUnit, MagnesiumValue, MagnesiumUnit, PotassiumValue, PotassiumUnit, IronValue, IronUnit, PhosphorusValue, PhosphorusUnit, VitAValue, VitAUnit, VitBValue, VitBFatUnit, VitDValue, VitDUnit, VitEValue, VitEUnit, VitKValue, VitKUnit, NiacinValue, NiacinUnit, VitB12Value, VitB12Unit, ThiaminValue, ThiaminUnit, RiboflavinValue, RiboflavinUnit, FolateValue, FolateUnit, CaloriesDailyValue, CaloriesDailyUnit, FatDailyValue, FatDailyUnit, SatFatDailyValue, SatFatDailyUnit, CarbsDailyValue, CarbsDailyUnit, ProteinDailyValue, ProteinDailyUnit, CholeDailyValue, CholeDailyUnit, SodiumDailyValue, SodiumDailyUnit, CalciumDailyValue, CalciumDailyUnit, MagnesiumDailyValue, MagnesiumDailyUnit, PotassiumDailyValue, PotassiumDailyUnit, IronDailyValue, IronDailyUnit, PhosphorusDailyValue, PhosphorusDailyUnit };
             //measureUnitComboBox.SelectedIndex = 0;
         }
 
@@ -69,9 +69,10 @@ namespace RecipesFromTheFridge.Views
 
 
                     TotalNutrients totalNutrients = nutritionRootObject.totalNutrients;
+                    TotalDaily totalDaily = nutritionRootObject.totalDaily;
+                    
 
-
-                    ValuesAndUnitsWriter(TextBlocks, await CheckNullsAndReturnValidValues(totalNutrients));
+                    ValuesAndUnitsWriter(TextBlocks, await CheckNullsAndReturnValidValues(totalNutrients, totalDaily));
                     initialInformatoionStackPanel.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     AllInformationStackPanel.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
@@ -135,14 +136,14 @@ namespace RecipesFromTheFridge.Views
         /// values of the nutrition informations
         /// </param>
         /// <returns>A list full of valid values.</returns>
-        private async Task<List<string>> CheckNullsAndReturnValidValues(TotalNutrients totalNutrients)
+        private async Task<List<string>> CheckNullsAndReturnValidValues(TotalNutrients totalNutrients, TotalDaily totalDaily)
         {
             return await Task.Run(() =>
             {
                 List<string> listOfValues = new List<string>();
                 if (totalNutrients.ENERC_KCAL != null)
                 {
-                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.ENERC_KCAL.quantity, 2).ToString(), totalNutrients.ENERC_KCAL.unit });
+                    listOfValues.AddRange(new List<string> { Math.Round(totalNutrients.ENERC_KCAL.Quantity, 2).ToString(), totalNutrients.ENERC_KCAL.unit });
                 }
                 else
                 {
@@ -357,6 +358,204 @@ namespace RecipesFromTheFridge.Views
                 }
 
 
+
+                if (totalDaily.ENERC_KCAL != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.ENERC_KCAL.quantity, 2).ToString(), totalDaily.ENERC_KCAL.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.FAT != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.FAT.quantity, 2).ToString(), totalDaily.FAT.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.FASAT != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.FASAT.quantity, 2).ToString(), totalDaily.FASAT.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.CHOCDF != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.CHOCDF.quantity, 2).ToString(), totalDaily.CHOCDF.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.PROCNT != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.PROCNT.quantity, 2).ToString(), totalDaily.PROCNT.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.CHOLE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.CHOLE.quantity, 2).ToString(), totalDaily.CHOLE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.NA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.NA.quantity, 2).ToString(), totalDaily.NA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.CA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.CA.quantity, 2).ToString(), totalDaily.CA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.MG != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.MG.quantity, 2).ToString(), totalDaily.MG.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.K != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.K.quantity, 2).ToString(), totalDaily.K.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.FE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.FE.quantity, 2).ToString(), totalDaily.FE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.P != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.P.quantity, 2).ToString(), totalDaily.P.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.VITA_RAE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.VITA_RAE.quantity, 2).ToString(), totalDaily.VITA_RAE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.VITB6A != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.VITB6A.quantity, 2).ToString(), totalDaily.VITB6A.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.VITD != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.VITD.quantity, 2).ToString(), totalDaily.VITD.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.TOCPHA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.TOCPHA.quantity, 2).ToString(), totalDaily.TOCPHA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.VITK1 != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.VITK1.quantity, 2).ToString(), totalDaily.VITK1.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.NIA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.NIA.quantity, 2).ToString(), totalDaily.NIA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.VITB12 != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.VITB12.quantity, 2).ToString(), totalDaily.VITB12.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.THIA != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.THIA.quantity, 2).ToString(), totalDaily.THIA.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.RIBF != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.RIBF.quantity, 2).ToString(), totalDaily.RIBF.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
+
+                if (totalDaily.FOLDFE != null)
+                {
+                    listOfValues.AddRange(new List<string> { Math.Round(totalDaily.FOLDFE.quantity, 2).ToString(), totalDaily.FOLDFE.unit });
+                }
+                else
+                {
+                    listOfValues.AddRange(new List<string> { String.Empty, String.Empty });
+                }
                 return listOfValues;
             });
 

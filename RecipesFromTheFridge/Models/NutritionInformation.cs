@@ -9,7 +9,7 @@ namespace RecipesFromTheFridge.Models
     public class ENERCKCAL
     {
         public string label { get; set; }
-        public double quantity { get; set; }
+        public double Quantity { get; set; }
         public string unit { get; set; }
     }
 
